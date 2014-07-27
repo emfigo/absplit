@@ -9,7 +9,7 @@ end
 task :default => :spec
 
 task :environment do
-  require 'absplit'
+  require 'a_b_split'
 end
 
 task :console => :environment do

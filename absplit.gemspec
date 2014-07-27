@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.description    = 'A/B testing gem'
   s.authors        = ['Enrique Figuerola']
   s.email          = 'hard_rock15@msn.com'
-  s.files          = ['lib/absplit.rb']
+  s.files          = ['lib/a_b_split.rb']
   s.require_paths  = ['lib']
   s.homepage       = 'https://github.com/emfigo/absplit'
 
