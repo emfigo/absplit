@@ -21,3 +21,4 @@ task :console => :environment do
 
   Pry.start
 end
+task :c => :console
