@@ -15,7 +15,7 @@ module ABSplit
 
       def self.validate(experiments)
         given_weights = experiments.each_with_object([]) do |param, memo| 
-          memo << param[:weight] if param.has_key?(:weight)
+          memo << param['weight'] if param.has_key?('weight')
         end
 
         unless experiments.any? && experiments.size > 1 && given_weights.reduce(0, &:+) <= 100
@@ -27,7 +27,7 @@ module ABSplit
 
       def self.markers(experiments)
         experiments.map do |experiment| 
-          (MAX_POSITIONS * (experiment[:weight] / 100)) - ( MAX_POSITIONS / 2)
+          (MAX_POSITIONS * (experiment['weight'] / 100)) - ( MAX_POSITIONS / 2)
         end
       end
 
@@ -36,11 +36,11 @@ module ABSplit
         
         markers(experiments).each_with_index do |limit, i|
           if x_position <= limit
-            return experiments[i][:name]
+            return experiments[i]['name']
           end
         end
 
-        experiments.last[:name]
+        experiments.last['name']
       end
 
       def self.split_weights(experiments, parts, given_percentage)
@@ -50,10 +50,10 @@ module ABSplit
         missing_percentage = 100 - given_percentage.reduce(0, &:+)
 
         experiments.map do |experiment| 
-          if experiment[:weight]
-            experiment[:weight] = experiment[:weight].to_f
+          if experiment['weight']
+            experiment['weight'] = experiment['weight'].to_f
           else
-            experiment[:weight] = missing_percentage.to_f / missing_weights.to_f
+            experiment['weight'] = missing_percentage.to_f / missing_weights.to_f
           end
 
           experiment
