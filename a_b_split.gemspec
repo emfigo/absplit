@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.require_paths  = ['lib']
   s.homepage       = 'https://github.com/emfigo/absplit'
 
-  s.add_development_dependency(%q<rspec>, [">= 3.0.0"])
-  s.add_development_dependency(%q<rake>, [">= 0"])
+  s.add_development_dependency 'rspec', '~> 3.0'
+  s.add_development_dependency 'pry', '~> 0.9'
+  s.add_development_dependency 'rake', '~> 10.3'
 end
