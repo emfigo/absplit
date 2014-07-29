@@ -58,4 +58,4 @@ Once your experiments are loaded. You can use the splitter in your application
 IMPORTANT: It is important that you pass a unique  indentifier to the experiment, so when the splitting occurs it's consistent (otherwise it would act like a random). This identifier could be an id, or whatever object you consider.
 
 ##Recommendations
-This gem was meant to be simple and more focused on the splitting itself, not on extra functionality. If you want to track your experiments, for example in a web page, you can use Google Analytics.
+This gem was meant to be simple and more focused on the splitting itself, not on extra functionality. If you want to track your experiments, for example in a web page, you can use Google Analytics. Also if you want the value to be pesistent because you increment the percentage you can use http cookies.
