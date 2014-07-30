@@ -13,8 +13,6 @@ The aim of ABSplit is a form of statistical hypothesis testing based on weights 
 
 ##Usage
 
-In the current version you can only use weighted split. It will be modified to use more algorithms in the future.
-
 In order to use the gem it's necessary to initialize the configuration with all the experiments that you are going to use in your application
 
 ```ruby
@@ -27,6 +25,29 @@ In order to use the gem it's necessary to initialize the configuration with all 
                          }
   end
 ```
+
+You can specified an algorithm to be used in your experiment
+
+```ruby
+  ABSplit.configure do |config|
+    config.experiments =  { 'experiment' =>
+                             { 'algorithm' => 'Sigmoid',
+                               'options' =>
+                                 [ { 'name' => 1, 'weight' => 50 },
+                                   { 'name' => 2 } ]
+                             }
+                          }
+  end
+
+```
+
+NOTE: It is important that you select the algorithms from the following list:
+
+```
+   Sigmoid  => Sigmoid function
+
+```
+
 Also you can set your experiments in a yml file. 
 
 ```ruby
@@ -39,6 +60,14 @@ experimentB:
     weight: 33.33
   - name: 'optionB'
   - name: 'optionC'
+experimentC:
+  algorithm: CustomAlgorithm
+  options:
+    - name: 'optionA'
+    - name: 'optionB'
+experimentD:
+  algorithm: Sigmoid
+
 ```
 
 And load them with the following:
