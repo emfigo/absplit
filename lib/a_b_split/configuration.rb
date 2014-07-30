@@ -3,7 +3,7 @@ module ABSplit
     attr_accessor :experiments
 
     def initialize
-      @experiments = {}
+      @experiments = Hash.new
     end
   end
 end

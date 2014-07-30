@@ -8,10 +8,6 @@ describe ABSplit::Test do
                     } }
   describe '.split' do
     context 'when no experiment file is specified' do
-      before do
-        ABSplit.configure
-      end
-      
       it 'splits the experiment with the default function' do
         expect{ described_class.split(:experiment, x) }.to raise_error(ABSplit::NoValidExperiment)
       end
