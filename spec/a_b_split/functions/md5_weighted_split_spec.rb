@@ -44,5 +44,16 @@ describe ABSplit::Functions::Md5WeightedSplit do
         end
       end
     end
+
+    it 'always returns the same option when passed the same value' do
+      params = [
+        { 'name' => 'option_a', 'weight' => 60 },
+        { 'name' => 'option_b', 'weight' => 39 },
+        { 'name' => 'option_c', 'weight' => 1 }
+      ]
+
+      value = 178440
+      expect(100.times.map { described_class.value_for(value, *params) }.uniq).to eq ['option_c']
+    end
   end
 end
