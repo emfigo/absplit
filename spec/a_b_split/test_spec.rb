@@ -2,18 +2,11 @@ require 'spec_helper'
 
 describe ABSplit::Test do
   let(:x) { 'testa123' }
-  let(:experiment) { { experiment:
-                          [ { name: 'optiona', weight: 50 },
-                            { name: 'optionb'} ]
-                    } }
+  
   describe '.split' do
     context 'when no experiment file is specified' do
-      before do
-        ABSplit.configure
-      end
-      
-      it 'splits the experiment with the default function' do
-        expect{ described_class.split(:experiment, x) }.to raise_error(ABSplit::NoValidExperiment)
+      it 'raises a NoValidExperiment error' do
+        expect{ described_class.split('experiment', x) }.to raise_error(ABSplit::NoValidExperiment)
       end
     end
 
@@ -24,10 +17,64 @@ describe ABSplit::Test do
         end
       end
 
-      it 'splits the experiment with the default function' do
-        expect(ABSplit::Functions::WeightedSplit).to receive(:value_for).with(x, *experiment[:experiment])
+      context 'and an algorithm is specified' do
+        context 'and the algorithm is valid' do
+          let(:experiment) { { 'experiment' =>
+                               { 'algorithm' => 'Sigmoid',
+                                 'options' =>
+                                   [ { 'name' => 1, 'weight' => 50 },
+                                     { 'name' => 2 } ]
+                               }
+                            } }
+          
+          it 'splits the experiment with the function specified by the user' do
+            expect(ABSplit::Functions::Sigmoid).to receive(:value_for).with(x, *experiment['experiment']['options'])
 
-        described_class.split(:experiment, x)
+            described_class.split('experiment', x)
+          end
+        end
+
+        context 'and the algorithm is nil' do
+          let(:experiment) { { 'experiment' =>
+                               { 'options' =>
+                                   [ { 'name' => 1, 'weight' => 50 },
+                                     { 'name' => 2 } ]
+                               }
+                            } }
+          
+          it 'splits the experiment with the default function' do
+            expect(ABSplit::Functions::WeightedSplit).to receive(:value_for).with(x, *experiment['experiment']['options'])
+
+            described_class.split('experiment', x)
+          end
+        end
+
+        context 'and the algorithm is not valid' do
+          let(:experiment) { { 'experiment' =>
+                               { 'algorithm' => 'non_valid',
+                                 'options' =>
+                                   [ { 'name' => 1, 'weight' => 50 },
+                                     { 'name' => 2 } ]
+                               }
+                            } }
+          
+          it 'raises a NoValidExperiment error' do
+            expect{ described_class.split('experiment', x) }.to raise_error(ABSplit::NoValidExperiment)
+          end
+        end
+      end
+
+      context 'and no algorithm is specified' do
+        let(:experiment) { { 'experiment' =>
+                             [ { 'name' => 'optiona', 'weight' => 50 },
+                               { 'name' => 'optionb' } ]
+                          } }
+        
+        it 'splits the experiment with the default function' do
+          expect(ABSplit::Functions::WeightedSplit).to receive(:value_for).with(x, *experiment['experiment'])
+
+          described_class.split('experiment', x)
+        end
       end
     end
   end
