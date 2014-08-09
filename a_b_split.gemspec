@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name           = 'a_b_split'
-  s.version        = '1.0.0'
+  s.version        = '0.1.0'
   s.date           = "#{Time.now.strftime("%Y-%m-%d")}"
   s.summary        = 'ABSplit'
   s.license        = 'MIT'
