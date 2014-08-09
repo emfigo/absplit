@@ -44,8 +44,9 @@ You can specified an algorithm to be used in your experiment
 NOTE: It is important that you select the algorithms from the following list:
 
 ```
-   Sigmoid  => Sigmoid function
-
+    WeightedSplit => Weighted split based on hash value
+    Md5WeightedSplit => Weighted split based on MD5 digest of value
+    Sigmoid  => Sigmoid function
 ```
 
 Also you can set your experiments in a yml file. 
