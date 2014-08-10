@@ -27,24 +27,6 @@ module ABSplit
           given_weights
         end
 
-        def markers(experiments)
-          experiments.map do |experiment| 
-            (MAX_POSITIONS * (experiment['weight'] / 100)) - ( MAX_POSITIONS / 2)
-          end
-        end
-
-        def select_experiment_for(x, experiments)
-          x_position = x.hash
-
-          markers(experiments).each_with_index do |limit, i|
-            if x_position <= limit
-              return experiments[i]['name']
-            end
-          end
-
-          experiments.last['name']
-        end
-
         def split_weights(experiments, parts, given_percentage)
           return experiments if given_percentage.size >= parts
 
@@ -59,6 +41,26 @@ module ABSplit
             end
 
             experiment
+          end
+        end
+        
+        def select_experiment_for(x, experiments)
+          x_position = x.hash
+
+          markers(experiments).each_with_index do |limit, i|
+            if x_position <= limit
+              return experiments[i]['name']
+            end
+          end
+
+          experiments.last['name']
+        end
+
+        private
+
+        def markers(experiments)
+          experiments.map do |experiment| 
+            (MAX_POSITIONS * (experiment['weight'] / 100)) - ( MAX_POSITIONS / 2)
           end
         end
       end

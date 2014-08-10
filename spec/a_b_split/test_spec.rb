@@ -20,7 +20,7 @@ describe ABSplit::Test do
       context 'and an algorithm is specified' do
         context 'and the algorithm is valid' do
           let(:experiment) { { 'experiment' =>
-                               { 'algorithm' => 'Sigmoid',
+                               { 'algorithm' => 'HeavisideWeightedSplit',
                                  'options' =>
                                    [ { 'name' => 1, 'weight' => 50 },
                                      { 'name' => 2 } ]
@@ -28,7 +28,7 @@ describe ABSplit::Test do
                             } }
           
           it 'splits the experiment with the function specified by the user' do
-            expect(ABSplit::Functions::Sigmoid).to receive(:value_for).with(x, *experiment['experiment']['options'])
+            expect(ABSplit::Functions::HeavisideWeightedSplit).to receive(:value_for).with(x, *experiment['experiment']['options'])
 
             described_class.split('experiment', x)
           end
