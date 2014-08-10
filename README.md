@@ -13,8 +13,6 @@ The aim of ABSplit is a form of statistical hypothesis testing based on weights 
 
 ##Usage
 
-In the current version you can only use weighted split. It will be modified to use more algorithms in the future.
-
 In order to use the gem it's necessary to initialize the configuration with all the experiments that you are going to use in your application
 
 ```ruby
@@ -27,6 +25,30 @@ In order to use the gem it's necessary to initialize the configuration with all 
                          }
   end
 ```
+
+You can specified an algorithm to be used in your experiment
+
+```ruby
+  ABSplit.configure do |config|
+    config.experiments =  { 'experiment' =>
+                             { 'algorithm' => 'Sigmoid',
+                               'options' =>
+                                 [ { 'name' => 1, 'weight' => 50 },
+                                   { 'name' => 2 } ]
+                             }
+                          }
+  end
+
+```
+
+NOTE: It is important that you select the algorithms from the following list:
+
+|Name|Description|Properties|
+|:----|:----------------|:---------|
+|WeightedSplit| Weighted split based on hash value |- No collisions are possible - Non persistent (based on memory position)|
+|Md5WeightedSplit| Weighted split based on MD5 digest of value |- Persistent - Supports 128 bits as input - Collisions are possible|
+|HeavisideWeightedSplit| Weighted split based on a modified Heaviside function |- Persistent - In case a numeric value is passed, it uses a sigmoid function applying a modified Heaviside to choose the experiment - In case a none numeric value is passed it uses SHA2 algorithm to get a value from the object, and after the default behaviour. - Supports 256 bits as input - No collisions are possible|
+
 Also you can set your experiments in a yml file. 
 
 ```ruby
@@ -39,6 +61,17 @@ experimentB:
     weight: 33.33
   - name: 'optionB'
   - name: 'optionC'
+experimentC:
+  algorithm: Md5WeightedSplit
+  options:
+    - name: 'optionA'
+    - name: 'optionB'
+experimentD:
+  algorithm: HeavisideWeightedSplit
+  options:
+    - name: 'optionA'
+    - name: 'optionB'
+
 ```
 
 And load them with the following:
@@ -55,7 +88,10 @@ Once your experiments are loaded. You can use the splitter in your application
   ABSplit::Test.split('experimentA', user_id)
 ```
 
-IMPORTANT: It is important that you pass a unique  indentifier to the experiment, so when the splitting occurs it's consistent (otherwise it would act like a random). This identifier could be an id, or whatever object you consider.
+IMPORTANT: It is important that you understand how the algorithm chosen by you works. All the algorithms are based on an input to choose an option in the experiment. 
 
 ##Recommendations
-This gem was meant to be simple and more focused on the splitting itself, not on extra functionality. If you want to track your experiments, for example in a web page, you can use Google Analytics. Also if you want the value to be pesistent because you increment the percentage you can use http cookies.
+This gem was meant to be simple and more focused on the splitting itself, not on extra functionality. If you want to track your experiments, you can use tools like Google Analytics.
+
+##Special Thanks
+I want to thank the collaboration from; [FraDim](https://github.com/FraDim), [jpstevens](https://github.com/jpstevens), [sgerrand](https://github.com/sgerrand). Without them none of the improvements would have been possible. Thank you for your ideas and time.
