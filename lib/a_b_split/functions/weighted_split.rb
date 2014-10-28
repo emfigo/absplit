@@ -60,7 +60,7 @@ module ABSplit
 
         def markers(experiments)
           experiments.map do |experiment| 
-            (MAX_POSITIONS * (experiment['weight'] / 100)) - ( MAX_POSITIONS / 2)
+            (self::MAX_POSITIONS * (experiment['weight'] / 100)) - (self::MAX_POSITIONS / 2)
           end
         end
       end
