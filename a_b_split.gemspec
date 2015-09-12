@@ -1,10 +1,9 @@
 Gem::Specification.new do |s|
   s.name           = 'a_b_split'
-  s.version        = '0.1.0'
+  s.version        = '0.1.1'
   s.date           = "#{Time.now.strftime("%Y-%m-%d")}"
-  s.summary        = 'ABSplit'
+  s.summary        = 'Splits experiment cohorts for A/B testing'
   s.license        = 'MIT'
-  s.description    = 'A/B split testing gem'
   s.authors        = ['Enrique Figuerola']
   s.email          = 'hard_rock15@msn.com'
   s.files          = Dir.glob('lib/**/*')
