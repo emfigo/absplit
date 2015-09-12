@@ -1,4 +1,5 @@
-require_relative 'lib/a_b_split/version'
+$LOAD_PATH.unshift File.expand_path('.')
+require 'lib/a_b_split/version'
 
 Gem::Specification.new do |s|
   s.name           = 'a_b_split'
