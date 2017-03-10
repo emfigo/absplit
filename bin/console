@@ -1,0 +1,12 @@
+#! /usr/bin/ruby
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift File.expand_path('.')
+require 'lib/a_b_split'
+require 'pry'
+
+Pry.config.prompt = [
+  proc { 'ABSplit> ' }
+]
+
+Pry.start
