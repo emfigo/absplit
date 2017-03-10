@@ -1,0 +1,21 @@
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+
+Style/Blocks:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 100
+
+Metrics/LineLength:
+  Max: 105
+
+Metrics/MethodLength:
+  Max: 20
+
+Style/Documentation:
+  Exclude:
+    - 'lib/a_b_split.rb'
+    - 'spec/**/*'
+    - 'test/**/*'

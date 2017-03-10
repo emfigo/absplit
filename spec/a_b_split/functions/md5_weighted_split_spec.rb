@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe ABSplit::Functions::Md5WeightedSplit do
@@ -8,7 +9,9 @@ describe ABSplit::Functions::Md5WeightedSplit do
     let(:sample_size) { 1000 * rand(10..20) }
 
     let(:test_run) do
-      sample_size.times.map.with_index { |index| described_class.value_for(index * rand(1..100), *params) }
+      sample_size.times.map.with_index do |index|
+        described_class.value_for(index * rand(1..100), *params)
+      end
     end
 
     context 'when the weight of an option' do
@@ -39,7 +42,9 @@ describe ABSplit::Functions::Md5WeightedSplit do
           it "gets #{param['name']} approximately #{param['weight']}% of the time" do
             adjusted_tolerance = sample_size.to_f * (tolerance / 2)
             allocated_sample_size = (param['weight'].to_f / 100) * sample_size
-            expect(test_run.count { |option| option == param['name'] }).to be_within(adjusted_tolerance).of(allocated_sample_size)
+            expect(test_run.count { |option| option == param['name'] })
+              .to be_within(adjusted_tolerance)
+              .of(allocated_sample_size)
           end
         end
       end
@@ -52,8 +57,8 @@ describe ABSplit::Functions::Md5WeightedSplit do
         { 'name' => 'option_c', 'weight' => 1 }
       ]
 
-      value = 178440
-      expect(100.times.map { described_class.value_for(value, *params) }.uniq).to eq ['option_c']
+      value = 178_440
+      expect(Array.new(100) { described_class.value_for(value, *params) }.uniq).to eq ['option_c']
     end
   end
 end

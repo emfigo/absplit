@@ -1,14 +1,20 @@
+# frozen_string_literal: true
 require 'digest'
 require_relative 'weighted_split'
 
 module ABSplit
   module Functions
+    # Weighted split based on MD5 digest of value.
+    #
+    # Persistent - Collisions are possible
+    #
+    # Supports 128 bits as input
     class Md5WeightedSplit < WeightedSplit
-
       MAX_HASH_VALUE = ('f' * 32).to_i(16)
 
       class << self
         protected
+
         def select_experiment_for(value, experiments)
           weight = weight(value)
           experiments = calculate_markers experiments
@@ -33,7 +39,6 @@ module ABSplit
             { marker: cumulative }.merge(experiment)
           end
         end
-
       end
     end
   end
