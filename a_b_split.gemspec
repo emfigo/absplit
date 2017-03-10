@@ -7,11 +7,11 @@ Gem::Specification.new do |s|
   s.date           = "#{Time.now.strftime("%Y-%m-%d")}"
   s.summary        = 'Splits experiment cohorts for A/B testing'
   s.license        = 'MIT'
-  s.authors        = ['Enrique Figuerola']
-  s.email          = 'hard_rock15@msn.com'
+  s.authors        = ['Enrique M Figuerola Gomez']
+  s.email          = 'me@emfigo.com'
   s.files          = Dir.glob('lib/**/*')
   s.require_paths  = ['lib']
-  s.homepage       = 'https://github.com/emfigo/absplit'
+  s.homepage       = 'https://emfigo.com/portfolio.html'
 
   s.required_ruby_version = '>= 2.0.0'
 
