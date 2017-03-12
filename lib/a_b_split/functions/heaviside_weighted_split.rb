@@ -41,7 +41,7 @@ module ABSplit
           experiments.each do |experiment|
             accumulated_percentages += percentage(experiment)
 
-            return experiment['name'] if x < accumulated_percentages
+            return experiment['name'] if x <= accumulated_percentages
           end
         end
 

@@ -1,0 +1,14 @@
+experimentA:
+  - name: 'optionA'
+    weight: 50
+  - name: 'optionB'
+experimentB:
+  algorithm: Md5WeightedSplit
+  options:
+    - name: 'optionA'
+    - name: 'optionB'
+experimentC:
+  algorithm: HeavisideWeightedSplit
+  options:
+    - name: 'optionA'
+    - name: 'optionB'
