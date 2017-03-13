@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe ABSplit::Functions::HeavisideWeightedSplit do
@@ -15,7 +16,7 @@ describe ABSplit::Functions::HeavisideWeightedSplit do
       let(:value) { nil }
 
       it 'always returns the same option when passed the same value' do
-        expect(100.times.map{ described_class.value_for(x, *params) }.uniq).to eq(['experimentB'])
+        expect(Array.new(100) { described_class.value_for(x, *params) }.uniq).to eq(['experimentB'])
       end
     end
 

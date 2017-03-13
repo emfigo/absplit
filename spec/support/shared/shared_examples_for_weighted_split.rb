@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 shared_examples :weighted_split do
   let(:x) { nil }
 
@@ -32,9 +33,8 @@ shared_examples :weighted_split do
           ]
         end
 
-
         it 'returns an experiment with 50% chance' do
-          expect(['experimentA', 'experimentB']).to include(subject)
+          expect(%w(experimentA experimentB)).to include(subject)
         end
       end
 
@@ -47,9 +47,8 @@ shared_examples :weighted_split do
           ]
         end
 
-
         it 'returns an experiment with equitative chance' do
-          expect(['experimentA', 'experimentB', 'experimentC']).to include(subject)
+          expect(%w(experimentA experimentB experimentC)).to include(subject)
         end
       end
     end
@@ -61,7 +60,6 @@ shared_examples :weighted_split do
           { 'name' => 'experimentB' }
         ]
       end
-
 
       it 'returns weighted split based on the given parameters' do
         expect(subject).to eql('experimentA')
@@ -75,7 +73,6 @@ shared_examples :weighted_split do
           { 'name' => 'experimentB', 'weight' => 0 }
         ]
       end
-
 
       it 'returns a weighted split based on the parameters' do
         expect(subject).to eql('experimentA')

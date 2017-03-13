@@ -1,4 +1,5 @@
-$:.unshift File.expand_path('..', __FILE__)
+# frozen_string_literal: true
+$LOAD_PATH.unshift File.expand_path('..', __FILE__)
 
 require 'a_b_split/functions'
 require 'a_b_split/configuration'
@@ -7,16 +8,20 @@ require 'yaml'
 
 module ABSplit
   class NoValidExperiment < RuntimeError; end
-end
 
-module ABSplit
-  extend self
+  def configuration
+    @configuration
+  end
 
-  attr_accessor :configuration
+  def configuration=(config)
+    @configuration = config
+  end
 
   def configure
     yield(configuration) if block_given?
   end
+
+  module_function :configure, :configuration, :configuration=
 end
 
 ABSplit.configuration = ABSplit::Configuration.new

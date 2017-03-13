@@ -93,5 +93,19 @@ IMPORTANT: It is important that you understand how the algorithm chosen by you w
 ##Recommendations
 This gem was meant to be simple and more focused on the splitting itself, not on extra functionality. If you want to track your experiments, you can use tools like Google Analytics.
 
+##Collaboration
+Please if you would like to collaborate in this project don't doubt to do so. Is always great to have different views to cover. What is going to be evaluated:
+ - Usability
+ - That it works !
+ - That is covered in test (unit and integration)
+ - Simplicity
+
+If you have all this, please open a PR and mention @emfigo so I can take a look.
+
+If you would like to become a collaborator please contact me through my email so we can have a chat.
+
+_“Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.”_
+*Richard Pattis*
+
 ##Special Thanks
 I want to thank the collaboration from; [FraDim](https://github.com/FraDim), [jpstevens](https://github.com/jpstevens), [sgerrand](https://github.com/sgerrand). Without them none of the improvements would have been possible. Thank you for your ideas and time.
