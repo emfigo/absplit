@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 shared_examples :weighted_split do
   let(:x) { nil }
 
@@ -34,7 +35,7 @@ shared_examples :weighted_split do
         end
 
         it 'returns an experiment with 50% chance' do
-          expect(%w(experimentA experimentB)).to include(subject)
+          expect(%w[experimentA experimentB]).to include(subject)
         end
       end
 
@@ -48,7 +49,7 @@ shared_examples :weighted_split do
         end
 
         it 'returns an experiment with equitative chance' do
-          expect(%w(experimentA experimentB experimentC)).to include(subject)
+          expect(%w[experimentA experimentB experimentC]).to include(subject)
         end
       end
     end

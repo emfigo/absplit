@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'spec_helper'
 
 describe ABSplit::Functions::Md5WeightedSplit do
@@ -9,7 +10,7 @@ describe ABSplit::Functions::Md5WeightedSplit do
     let(:sample_size) { 1000 * rand(10..20) }
 
     let(:test_run) do
-      sample_size.times.map.with_index do |index|
+      sample_size.times.map do |index|
         described_class.value_for(index * rand(1..100), *params)
       end
     end

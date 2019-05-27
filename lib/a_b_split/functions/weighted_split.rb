@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ABSplit
   module Functions
     # Weighted split based on hash value.
@@ -10,12 +11,12 @@ module ABSplit
       MAX_POSITIONS = (9_999_999_999_999_999_999 * 2) + 1 # capacity of Fixnum
 
       class << self
-        def value_for(x, *params)
+        def value_for(value, *params)
           given_weights = validate(params)
 
           experiments = split_weights(params, params.size, given_weights)
 
-          select_experiment_for(x, experiments)
+          select_experiment_for(value, experiments)
         end
 
         protected
@@ -42,15 +43,15 @@ module ABSplit
             experiment['weight'] = if experiment['weight']
                                      experiment['weight'].to_f
                                    else
-                                     missing_percentage.to_f / missing_weights.to_f
+                                     missing_percentage.to_f / missing_weights
                                    end
 
             experiment
           end
         end
 
-        def select_experiment_for(x, experiments)
-          x_position = x.hash
+        def select_experiment_for(value, experiments)
+          x_position = value.hash
 
           markers(experiments).each_with_index do |limit, i|
             return experiments[i]['name'] if x_position <= limit

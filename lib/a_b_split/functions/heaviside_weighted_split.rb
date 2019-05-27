@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'bigdecimal'
 require_relative 'weighted_split'
 
@@ -49,8 +50,8 @@ module ABSplit
           experiment['weight'].to_f / 100
         end
 
-        def sigmoid(x)
-          BigDecimal.new((1.0 / (1 + Math.exp(-2 * x))).to_s)
+        def sigmoid(value)
+          BigDecimal((1.0 / (1 + Math.exp(-2 * value))).to_s)
         end
       end
     end

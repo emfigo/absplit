@@ -1,9 +1,7 @@
 AllCops:
+  TargetRubyVersion: 2.3
   Exclude:
     - 'vendor/**/*'
-
-Style/Blocks:
-  Enabled: false
 
 Metrics/BlockLength:
   Max: 100

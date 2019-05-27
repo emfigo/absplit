@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 $LOAD_PATH.unshift File.expand_path('.')
 require 'lib/a_b_split/version'
 
@@ -14,10 +15,10 @@ Gem::Specification.new do |s|
   s.require_paths  = ['lib']
   s.homepage       = 'https://emfigo.com/portfolio.html'
 
-  s.required_ruby_version = '>= 2.0.0'
+  s.required_ruby_version = '>= 2.3'
 
-  s.add_development_dependency 'rspec', '~> 3.4'
-  s.add_development_dependency 'pry', '~> 0.10'
-  s.add_development_dependency 'rake', '~> 12.0'
-  s.add_development_dependency 'rubocop', '~> 0.47'
+  s.add_development_dependency 'pry', '~> 0.12'
+  s.add_development_dependency 'rake', '~> 12.3'
+  s.add_development_dependency 'rspec', '~> 3.8'
+  s.add_development_dependency 'rubocop', '~> 0.70'
 end
