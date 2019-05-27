@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'spec_helper'
 require 'yaml'
 
@@ -15,7 +16,7 @@ describe ABSplit::Test do
 
   shared_examples :random_split do
     it 'returns one of the options in one the experiments' do
-      expect(%w(optionA optionB)).to include(ABSplit::Test.split(experiment, sample))
+      expect(%w[optionA optionB]).to include(ABSplit::Test.split(experiment, sample))
     end
   end
 

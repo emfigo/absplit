@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'a_b_split'
 require 'rspec'
 

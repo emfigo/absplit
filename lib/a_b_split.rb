@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-$LOAD_PATH.unshift File.expand_path('..', __FILE__)
+
+$LOAD_PATH.unshift File.expand_path(__dir__)
 
 require 'a_b_split/functions'
 require 'a_b_split/configuration'
