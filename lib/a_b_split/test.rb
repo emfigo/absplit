@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ABSplit
   # This class is responsible for spliting the population using the experiment
   # name passed as a parameter. It will always return an experiment name or a
@@ -7,12 +8,12 @@ module ABSplit
     include ABSplit
 
     class << self
-      def split(name, x)
+      def split(name, value)
         self.experiment = find(name)
 
         raise ABSplit::NoValidExperiment unless experiment
 
-        function.value_for(x, *options)
+        function.value_for(value, *options)
       end
 
       private
