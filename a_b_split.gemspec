@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.email          = 'me@emfigo.com'
   s.files          = Dir.glob('lib/**/*')
   s.require_paths  = ['lib']
-  s.homepage       = 'https://emfigo.com/portfolio.html'
+  s.homepage       = 'https://emfigo.com/portfolio'
 
   s.required_ruby_version = '>= 2.3'
 
